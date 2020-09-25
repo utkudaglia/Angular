@@ -1,5 +1,5 @@
-import { Cities } from './cities.models';
+import { CitiesState } from '../reducers/cities.recuder';
 
 export interface AppState{
-    readonly shopping: Cities
+    readonly city: CitiesState
 }
