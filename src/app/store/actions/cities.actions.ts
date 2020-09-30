@@ -11,11 +11,13 @@ export enum CitiesActionTypes{
 }
 export class LoadCitiesAction implements Action{
     readonly type = CitiesActionTypes.LOAD_CITIES;
+
+    constructor(public payload: string){}
 }
 export class LoadCitiesSuccessAction implements Action{
     readonly type = CitiesActionTypes.LOAD_CITIES_SUCCESS;
 
-    constructor(public payload: string){}
+    constructor(public payload: Cities){}
 }
 export class LoadCitiesFailureAction implements Action{
     readonly type = CitiesActionTypes.LOAD_CITIES_FAILURE;

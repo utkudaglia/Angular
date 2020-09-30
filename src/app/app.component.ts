@@ -7,6 +7,7 @@ import {
 } from './store/actions/cities.actions';
 import { AppState } from './store/models/app-state.model';
 import { Cities } from './store/models/cities.models'
+import { WeatherService } from './weather.service';
 
 @Component({
   selector: 'app-root',
@@ -58,7 +59,7 @@ export class AppComponent implements OnInit {
     name: "London",
     cod: 200,
 };
-  cityName = "london"
+  cityName = "london";
   
   constructor(private store: Store<AppState>){}
   
@@ -69,10 +70,10 @@ export class AppComponent implements OnInit {
     this.loading$ = this.store.select (store => store.city.loading);
     this.error$ = this.store.select (store => store.city.error);
 
-    this.store.dispatch(new LoadCitiesAction());
+    
   }
   getWeather(input) {
-    this.store.dispatch(new LoadCitiesSuccessAction());
+    console.log(this.store.dispatch(new LoadCitiesAction(input)));
   }
   
 }

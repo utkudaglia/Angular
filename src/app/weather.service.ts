@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Cities } from './store/models/cities.models';
 import { delay } from 'rxjs/operators';
+import { Observable } from 'rxjs/internal/Observable';
 
 @Injectable({
   providedIn: 'root'
@@ -13,6 +14,6 @@ export class WeatherService {
   constructor(private http: HttpClient) { }
 
   getWeatherResult(cityName: string){
-    return this.http.get(`${this.WEATHER_API}?q=${cityName}&units=metric&appid=${this.API_KEY}`)
+    return this.http.get(`${this.WEATHER_API}?q=${cityName}&units=metric&&appid=${this.API_KEY}`);
   }
 }
