@@ -1,11 +1,10 @@
-import { createReducer, on } from '@ngrx/store';
 import { CitiesAction, CitiesActionTypes } from '../actions/cities.actions';
 import { Cities } from '../models/cities.models';
 
 export interface CitiesState {
     city: Cities;
-    loading: Boolean,
-    error: Error,
+    loading: boolean;
+    error: any;
 }
 
 const initialState: CitiesState = {
@@ -16,11 +15,11 @@ const initialState: CitiesState = {
         },
         weather: [{
             id: 0,
-            main: "",
-            description: "",
-            icon: "",
+            main: '',
+            description: '',
+            icon: '',
         }],
-        base: "",
+        base: '',
         main: {
             temp: 0,
             feels_like: 0,
@@ -41,38 +40,43 @@ const initialState: CitiesState = {
         sys: {
             type: 0,
             id: 0,
-            country: "",
+            country: '',
             sunrise: 0,
             sunset: 0,
         },
         timezone: 0,
         id: 0,
-        name: "",
+        name: '',
         cod: 0,
     },
     loading: false,
     error: undefined,
-}
+};
 
-export function citiesReducer(state: CitiesState = initialState, action: CitiesAction) {
+export function citiesReducer(state: CitiesState = initialState, action: CitiesAction): CitiesState {
     switch (action.type) {
-        case CitiesActionTypes.LOAD_CITIES:
-            return {
-                ...state,
-                loading: true,
-            };
-        case CitiesActionTypes.LOAD_CITIES_SUCCESS:
-            return {
-                ...state,
-                city: action.payload,
-                loading: false,
-            };
-        case CitiesActionTypes.LOAD_CITIES_FAILURE:
-            return {
-                ...state,
-                error: action.payload,
-                loading: false,
-            };
+        case CitiesActionTypes.LOAD_CITIES: {
+          return {
+            ...state,
+            loading: true,
+          };
+        }
+        case CitiesActionTypes.LOAD_CITIES_SUCCESS: {
+          return {
+            ...state,
+            city: action.payload,
+            loading: false,
+          };
+        }
+        case CitiesActionTypes.LOAD_CITIES_FAILURE: {
+          return {
+            ...state,
+            error: action.payload,
+            loading: false,
+          };
+        }
+        default:
+          return state;
         // case CitiesActionTypes.SEND_CITIES:
         //     return {
         //         ...state,
@@ -91,4 +95,4 @@ export function citiesReducer(state: CitiesState = initialState, action: CitiesA
         //         loading: false,
         //     };
     }
-}
+};

@@ -9,14 +9,14 @@
 </div>
 
 <div class='result'>
-  City: {{newCity.name}} <br>
-  Weather: {{newCity.weather[0].main}} <br>
-  Temperature: {{newCity.main.temp}} <br>
-  Feels Like: {{newCity.main.feels_like}} <br>
-  Min Temperature: {{newCity.main.temp_min}}<br>
-  Max Temperature: {{newCity.main.temp_max}}<br>
-  Pressure: {{newCity.main.pressure}}<br>
-  Humidity: {{newCity.main.humidity}}<br>
-  Wind Speed: {{newCity.wind.speed}}<br>
+  City: {{(this.cities$ | async).name}} <br>
+  Weather: {{(this.cities$ | async).weather[0].main}} <br>
+  Temperature: {{(this.cities$ | async).main.temp}} <br>
+  Feels Like: {{(this.cities$ | async).main.feels_like}} <br>
+  Min Temperature: {{(this.cities$ | async).main.temp_min}}<br>
+  Max Temperature: {{(this.cities$ | async).main.temp_max}}<br>
+  Pressure: {{(this.cities$ | async).main.pressure}}<br>
+  Humidity: {{(this.cities$ | async).main.humidity}}<br>
+  Wind Speed: {{(this.cities$ | async).wind.speed}}<br>
 
 </div>
