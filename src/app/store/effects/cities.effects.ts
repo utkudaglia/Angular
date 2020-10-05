@@ -24,7 +24,7 @@ export class CitiesEffects {
                 )
             )
         )
-    )
+    );
 
     constructor(
         private actions$: Actions,

@@ -23,14 +23,16 @@ import { getRootStateReducers, ROOT_STATE_REDUCER_TOKEN } from './store';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    StoreModule.forRoot(ROOT_STATE_REDUCER_TOKEN, {
+    StoreModule.forRoot(
+      ROOT_STATE_REDUCER_TOKEN, {
       runtimeChecks: {
         strictStateImmutability: false,
         strictActionImmutability: false,
         strictStateSerializability: false,
         strictActionSerializability: false,
       },
-    }),
+    },
+    ),
     StoreDevtoolsModule.instrument(),
     EffectsModule.forRoot([CitiesEffects]),
     FormsModule,

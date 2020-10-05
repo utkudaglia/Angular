@@ -1,5 +1,5 @@
-import { CitiesAction, CitiesActionTypes } from '../actions/cities.actions';
-import { Cities } from '../models/cities.models';
+import {CitiesAction, CitiesActionTypes} from '../actions/cities.actions';
+import {Cities} from '../models/cities.models';
 
 export interface CitiesState {
     city: Cities;
@@ -7,7 +7,7 @@ export interface CitiesState {
     error: any;
 }
 
-const initialState: CitiesState = {
+export const initialState: CitiesState = {
     city: {
         coord: {
             lon: 0,
@@ -50,7 +50,22 @@ const initialState: CitiesState = {
         cod: 0,
     },
     loading: false,
-    error: undefined,
+    error: {
+      headers: {
+        normalizedNames: { },
+        lazyUpdate: null,
+      },
+      status: 0,
+      statusText: '',
+      url: '',
+      ok: false,
+      name : '',
+      message: '',
+      error: {
+        cod: '',
+        message: '',
+      }
+    },
 };
 
 export function citiesReducer(state: CitiesState = initialState, action: CitiesAction): CitiesState {
@@ -75,6 +90,10 @@ export function citiesReducer(state: CitiesState = initialState, action: CitiesA
             loading: false,
           };
         }
+      case CitiesActionTypes.RESET: {
+        return initialState;
+      }
+      // tslint:disable-next-line:no-switch-case-fall-through
         default:
           return state;
         // case CitiesActionTypes.SEND_CITIES:

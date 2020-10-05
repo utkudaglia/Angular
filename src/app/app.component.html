@@ -1,6 +1,6 @@
 <form class="example-form">
   <mat-form-field class="example-full-width">
-    <input matInput #input placeholder="City">
+    <input (keyup.enter)="getWeather(input.value)" matInput #input placeholder="City">
   </mat-form-field>
 </form>
 
@@ -8,7 +8,9 @@
   <button (click)='getWeather(input.value)' mat-button>Basic</button>
 </div>
 
-<div class='result'>
+<div *ngIf="input.value === null">{{input.value}}</div>
+
+<div *ngIf=" (this.error$ | async).status === 0 && (this.cities$ | async).name !== ''" class='result'>
   City: {{(this.cities$ | async).name}} <br>
   Weather: {{(this.cities$ | async).weather[0].main}} <br>
   Temperature: {{(this.cities$ | async).main.temp}} <br>
@@ -18,5 +20,8 @@
   Pressure: {{(this.cities$ | async).main.pressure}}<br>
   Humidity: {{(this.cities$ | async).main.humidity}}<br>
   Wind Speed: {{(this.cities$ | async).wind.speed}}<br>
-
+</div>
+<div *ngIf=" (this.error$ | async).status !== 0 && (this.cities$ | async).name === ''" class="error">
+  ERROR: {{(this.error$ | async).status}} {{(this.error$ | async).statusText}} <br>
+  Message: {{(this.error$ | async).message}}:
 </div>
